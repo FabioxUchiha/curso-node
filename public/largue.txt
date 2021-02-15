@@ -1,0 +1,5 @@
+¿Qué es un socket?
+Podría definirse como un tipo de 'puerto' en el cual se establece una comunicación abierta donde los datos fluyen bidireccionalmente entre cliente y servidor.
+
+¿Por qué usar sockets?
+Los sockets no necesitan que se envíe una petición para poder responder. Ellos permiten un flujo de datos bidireccional por lo tanto solo es necesario escuchar el servidor y éste enviará un mensaje cuando esté disponible.
