@@ -1,4 +1,4 @@
-fs es file system
+// fs es file system
 const fs = require('fs');
 
 // leer ficheros
