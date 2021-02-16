@@ -1,17 +1,21 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const itemSchema = new Schema({
-  name: {
-    type: String,
-    required:true
+const itemSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    }
   },
-  price:{
-    type:Number,
-    required:true
-  }
-},{timestamps:true});
+  {
+    timestamps: true
+  });
 
-const Item = mongoose.model('manzana',itemSchema)
+const Item = mongoose.model('manzana', itemSchema)
 
 module.exports = Item;

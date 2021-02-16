@@ -2,6 +2,7 @@ const express = require('express')
 const app = express();
 const mongoose = require('mongoose')
 const mongodb = 'mongodb+srv://FabioxUchiha:Fbx12345*@cluster0.jw09m.mongodb.net/items-data?retryWrites=true&w=majority';
+const Item = require('./models/item')
 
 app.set('view engine', 'ejs')
 
@@ -19,16 +20,40 @@ mongoose.connect(mongodb, {
 
 
 app.get('/', (req, res)=> {
-  res.render('index',
-    {
-      title2: 'titulo index'
-    });
+  res.redirect('get-item')
 })
 
 app.get('/contact', (req, res)=> {
   res.render('contact');
 })
 
-app.use((req, res)=> {
-  res.render('404');
+app.get('/add-item', (req, res)=> {
+  res.render('add-item');
 })
+
+app.get('/create-item', (req, res)=> {
+  const item = new Item({
+    name: 'tostadora',
+    price: 120000
+  })
+  item.save()
+  .then(result => res.send(result))
+  .catch(err => res.send(err))
+})
+
+app.get('/get-items', (req, res)=> {
+  Item.find()
+  .then(result=>res.send(result))
+  .catch(err => res.send(err))
+})
+app.get('/get-item', (req, res)=> {
+  Item.findById('602c2f1f9d44d746c986d235')
+  .then(result=>res.render('index', {
+    name: result.name,
+    price: result.price,
+  }))
+  })
+
+  app.use((req, res)=> {
+    res.render('404');
+  })
