@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<%- include('./partials/head.ejs')%>
+
+  <body>
+    <h1>Items desde MongoDb
+    </h1>
+    <table class="centered">
+      <thead>
+        <tr>
+          <th data-field="id">Name</th>
+          <th data-field="name">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.forEach( item=> { %>
+          <tr>
+            <td>
+              <%=item.name %>
+            </td>
+            <td>
+              <%=item.price %>
+            </td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+    <a href="/">inicio</a>
+  </body>
+
+</html>
