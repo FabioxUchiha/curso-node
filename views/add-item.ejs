@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<%- include('./partials/head.ejs')%>
+  <body>
+    <h1>add item</h1>
+    <form action="/item" method="POST">
+      <input type="text" name="name" id="name" value="" />
+      <input type="number" name="price" id="price" value="" />
+   <input type="submit" name="enviar" id="enviar" value="enviar" />
+    </form>
+  </body>
+</html>

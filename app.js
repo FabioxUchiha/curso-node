@@ -3,6 +3,9 @@ const app = express();
 const mongoose = require('mongoose')
 const mongodb = 'mongodb+srv://FabioxUchiha:Fbx12345*@cluster0.jw09m.mongodb.net/items-data?retryWrites=true&w=majority';
 const Item = require('./models/item')
+app.use(express.urlencoded({
+  extended: true
+}))
 
 app.set('view engine', 'ejs')
 
@@ -46,14 +49,25 @@ app.get('/get-items', (req, res)=> {
   .then(result=>res.send(result))
   .catch(err => res.send(err))
 })
+
+app.post('/item', (req, res)=> {
+  const item = new Item(req.body);
+  item.save()
+  .then(()=>{
+    res.redirect('/get-items')
+  })
+  .catch(err => res.send(err))
+})
+
+
 app.get('/get-item', (req, res)=> {
   Item.findById('602c2f1f9d44d746c986d235')
   .then(result=>res.render('index', {
     name: result.name,
     price: result.price,
   }))
-  })
+})
 
-  app.use((req, res)=> {
-    res.render('404');
-  })
+app.use((req, res)=> {
+  res.render('404');
+})
